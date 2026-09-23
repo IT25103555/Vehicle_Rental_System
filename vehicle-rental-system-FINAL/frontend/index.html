@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>DriveLanka — Web-Based Vehicle Rental System</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="index.html">
+
+<nav class="nav" id="nav-mount"></nav>
+
+<!-- ===================== HERO ===================== -->
+<header class="hero">
+  <div class="wrap hero-inner">
+    <div>
+      <div class="hero-eyebrow">Island-wide vehicle rental, done properly</div>
+      <h1>Rent the right vehicle in a few clicks, not a few calls.</h1>
+      <p class="lead">Search live availability, compare cars, vans and SUVs by price and specs, and confirm your booking online — no phone tag, no paperwork.</p>
+      <div class="hero-cta" id="heroCta">
+        <a href="vehicles.html" class="btn btn-primary">Browse the fleet</a>
+        <a href="register.html" class="btn btn-outline" id="heroCreateAccountBtn">Create an account</a>
+      </div>
+      <div class="hero-stats">
+        <div><b id="statVehicles">–</b><span>Vehicles listed</span></div>
+        <div><b id="statAvailable">–</b><span>Available now</span></div>
+        <div><b>24/7</b><span>Online booking</span></div>
+      </div>
+    </div>
+
+    <div class="hero-panel">
+      <h3>Find a vehicle</h3>
+      <form id="quickSearchForm">
+        <div class="field">
+          <label for="qType">Vehicle type</label>
+          <select id="qType">
+            <option value="">Any type</option>
+            <option value="Car">Car</option>
+            <option value="Van">Van</option>
+            <option value="SUV">SUV</option>
+            <option value="Motorbike">Motorbike</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="qPickup">Pick-up date</label>
+          <input type="date" id="qPickup" autocomplete="off" />
+        </div>
+        <div class="field">
+          <label for="qReturn">Return date</label>
+          <input type="date" id="qReturn" autocomplete="off" />
+        </div>
+        <div id="quickSearchMsg" class="form-msg"></div>
+        <button type="submit" class="btn btn-primary btn-block">Search availability</button>
+      </form>
+    </div>
+  </div>
+</header>
+
+<!-- ===================== FEATURES ===================== -->
+<section class="section" style="padding-bottom:40px;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Why DriveLanka</span>
+      <h2>Built for a smoother rental, start to finish</h2>
+    </div>
+    <div class="feature-grid">
+      <div class="feature-card">
+        <div class="icon">&#9889;</div>
+        <h4>Real-time availability</h4>
+        <p>Every booking updates the database instantly, so you never reserve a vehicle that's already taken.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#128274;</div>
+        <h4>Secure accounts</h4>
+        <p>Passwords are encrypted end-to-end, and your booking history stays tied to your account only.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#128202;</div>
+        <h4>Transparent pricing</h4>
+        <p>Daily rates are shown upfront. Your total cost is calculated automatically before you confirm.</p>
+      </div>
+      <div class="feature-card">
+        <div class="icon">&#127919;</div>
+        <h4>Smart recommendations</h4>
+        <p>Our AI module highlights well-matched vehicles based on browsing and rental patterns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FLEET PREVIEW (live from backend) ===================== -->
+<section class="section" style="background:var(--paper-card); border-top:1px solid var(--line-light); border-bottom:1px solid var(--line-light);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Live from our database</span>
+      <h2>A vehicle for every kind of trip</h2>
+    </div>
+    <div class="grid" id="fleetPreview">
+      <div class="spinner"></div>
+    </div>
+    <div class="center mt-lg">
+      <a href="vehicles.html" class="btn btn-dark">View the full fleet</a>
+    </div>
+  </div>
+</section>
+
+<section class="section" id="recommendedSection" style="display:none;">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Picked for you</span>
+      <h2>Recommended for you</h2>
+    </div>
+    <p style="color:var(--text-mute);margin-bottom:20px;">Based on what you've rented before, from our AI recommendation engine.</p>
+    <div class="grid" id="recommendedGrid">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== HOW IT WORKS ===================== -->
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">How it works</span>
+      <h2>Three steps from browsing to driving</h2>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <div class="num">1</div>
+        <h4>Search &amp; compare</h4>
+        <p>Filter by type, brand, fuel and price to shortlist vehicles that fit your trip.</p>
+      </div>
+      <div class="step">
+        <div class="num">2</div>
+        <h4>Book &amp; pay online</h4>
+        <p>Pick your dates, confirm the cost, and complete a secure simulated payment.</p>
+      </div>
+      <div class="step">
+        <div class="num">3</div>
+        <h4>Pick up &amp; go</h4>
+        <p>Collect your vehicle on the day — your confirmation and receipt are saved to your account.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== TESTIMONIALS ===================== -->
+<section class="section" style="background:var(--paper-card); border-top:1px solid var(--line-light); border-bottom:1px solid var(--line-light);">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Customer stories</span>
+      <h2>What renters are saying</h2>
+    </div>
+    <div class="testimonial-grid">
+      <div class="tcard">
+        <p>"Booked a van for a family trip to Kandy in under five minutes. The price was exactly what I saw online — no surprises."</p>
+        <div class="who"><b>Nadeesha K.</b><span>Colombo</span></div>
+      </div>
+      <div class="tcard">
+        <p>"The availability status is actually accurate. I've had bad experiences elsewhere with double bookings — not here."</p>
+        <div class="who"><b>Rashmika P.</b><span>Kurunegala</span></div>
+      </div>
+      <div class="tcard">
+        <p>"Recommended a hybrid sedan that fit my budget perfectly. Small touch, but it saved me a lot of comparing."</p>
+        <div class="who"><b>Ishara D.</b><span>Galle</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== FAQ ===================== -->
+<section class="section">
+  <div class="wrap" style="max-width:760px;">
+    <div class="section-head">
+      <span class="kicker">Good to know</span>
+      <h2>Frequently asked questions</h2>
+    </div>
+    <div id="faqList">
+      <div class="faq-item open">
+        <div class="faq-q"><span>Do I need an account to browse vehicles?</span><span class="chev">+</span></div>
+        <div class="faq-a"><p style="margin:0;">No — anyone can browse the fleet and check prices. You'll need a free account to confirm a booking.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>How is the total rental cost calculated?</span><span class="chev">+</span></div>
+        <div class="faq-a"><p style="margin:0;">We multiply the vehicle's daily rate by the number of rental days you select, shown before you confirm.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Can I cancel a booking?</span><span class="chev">+</span></div>
+        <div class="faq-a"><p style="margin:0;">Yes, from the "My Bookings" page. Cancelling immediately frees the vehicle up for other customers.</p></div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q"><span>Is payment on this site real?</span><span class="chev">+</span></div>
+        <div class="faq-a"><p style="margin:0;">This academic project uses a simulated payment step — no real card details or transactions are processed.</p></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ===================== CTA ===================== -->
+<section class="section" style="padding-top:0;">
+  <div class="wrap">
+    <div class="cta-band">
+      <div>
+        <h3>Ready to find your next ride?</h3>
+        <p>Browse live availability and book online in minutes.</p>
+      </div>
+      <a href="vehicles.html" class="btn btn-primary">Browse the fleet</a>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer-mount"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/app.js"></script>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Log In — DriveLanka</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="login.html">
+
+<nav class="nav" id="nav-mount"></nav>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <h2>Welcome back</h2>
+    <p class="sub">Log in to book vehicles and manage your rentals.</p>
+    <div id="loginMsg" class="form-msg"></div>
+    <form id="loginForm">
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" required placeholder="you@example.com" />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required placeholder="••••••••" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="loginBtn">Log in</button>
+    </form>
+    <div class="auth-foot">
+      Don't have an account? <a href="register.html" style="color:var(--amber-dark);font-weight:600;">Sign up</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="footer-mount"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

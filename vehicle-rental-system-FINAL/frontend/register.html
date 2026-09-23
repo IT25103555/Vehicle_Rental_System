@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Sign Up — DriveLanka</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="register.html">
+
+<nav class="nav" id="nav-mount"></nav>
+
+<div class="auth-shell">
+  <div class="auth-card">
+    <h2>Create your account</h2>
+    <p class="sub">Sign up to search, compare, and book vehicles online.</p>
+    <div id="registerMsg" class="form-msg"></div>
+    <form id="registerForm">
+      <div class="field">
+        <label for="fullName">Full name</label>
+        <input type="text" id="fullName" required placeholder="e.g. Kasun Silva" />
+      </div>
+      <div class="field">
+        <label for="email">Email address</label>
+        <input type="email" id="email" required placeholder="you@example.com" />
+      </div>
+      <div class="field">
+        <label for="nic">NIC number</label>
+        <input type="text" id="nic" required placeholder="e.g. 982345678V or 199823456789"
+               pattern="^(\d{9}[VvXx]|\d{12})$"
+               title="Old NIC: 9 digits followed by V or X. New NIC: 12 digits." />
+        <small class="field-hint">Old format: 9 digits + V/X. New format: 12 digits.</small>
+      </div>
+      <div class="field">
+        <label for="phone">Phone number</label>
+        <input type="tel" id="phone" required placeholder="e.g. 0712345678"
+               pattern="^0\d{9}$" maxlength="10"
+               title="Phone number must be exactly 10 digits, starting with 0." />
+      </div>
+      <div class="field">
+        <label for="password">Password</label>
+        <input type="password" id="password" required minlength="6" placeholder="At least 6 characters" />
+      </div>
+      <button type="submit" class="btn btn-primary btn-block" id="registerBtn">Create account</button>
+    </form>
+    <div class="auth-foot">
+      Already have an account? <a href="login.html" style="color:var(--amber-dark);font-weight:600;">Log in</a>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="footer-mount"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/auth.js"></script>
+</body>
+</html>

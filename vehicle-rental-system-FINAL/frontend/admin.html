@@ -1,0 +1,239 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Admin Panel — DriveLanka</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="admin.html">
+
+<nav class="nav" id="nav-mount"></nav>
+
+<div id="guardMount"></div>
+
+<div class="admin-shell" id="adminShell" style="display:none;">
+  <aside class="admin-side">
+    <div class="who">
+      <b id="adminName">Admin</b>
+      <span id="adminEmail">–</span>
+    </div>
+    <nav class="admin-nav">
+      <button data-tab="dashboard" class="active">Dashboard</button>
+      <button data-tab="vehicles">Vehicles (CRUD)</button>
+      <button data-tab="bookings">Bookings</button>
+      <button data-tab="users">Users (CRUD)</button>
+      <button data-tab="reviews">Reviews</button>
+      <button data-tab="reports">Reports</button>
+      <button data-tab="ai-insights">AI Insights</button>
+    </nav>
+  </aside>
+
+  <main class="admin-main">
+
+    <!-- DASHBOARD -->
+    <section id="tab-dashboard" class="admin-tab">
+      <div class="admin-header">
+        <div><h2>Dashboard</h2><p>Live snapshot pulled straight from the SQL database.</p></div>
+      </div>
+      <div class="stat-row" id="statRow">
+        <div class="stat-card"><span>Total vehicles</span><b id="statTotalVehicles">–</b></div>
+        <div class="stat-card"><span>Available now</span><b id="statAvail">–</b></div>
+        <div class="stat-card"><span>Total bookings</span><b id="statBookings">–</b></div>
+        <div class="stat-card"><span>Registered users</span><b id="statUsers">–</b></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Recent bookings</h3></div>
+        <div id="recentBookings"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- VEHICLES CRUD -->
+    <section id="tab-vehicles" class="admin-tab" style="display:none;">
+      <div class="admin-header">
+        <div><h2>Vehicle Inventory</h2><p>Add, edit, or remove vehicles — changes save directly to the database.</p></div>
+        <button class="btn btn-primary" id="addVehicleBtn">+ Add Vehicle</button>
+      </div>
+      <div class="panel">
+        <div id="vehiclesTable"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- BOOKINGS -->
+    <section id="tab-bookings" class="admin-tab" style="display:none;">
+      <div class="admin-header">
+        <div><h2>Bookings</h2><p>Approve, cancel, or remove customer bookings.</p></div>
+      </div>
+      <div class="panel">
+        <div id="bookingsTable"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- USERS CRUD -->
+    <section id="tab-users" class="admin-tab" style="display:none;">
+      <div class="admin-header">
+        <div><h2>Users</h2><p>Manage customer and admin accounts.</p></div>
+      </div>
+      <div class="panel">
+        <div id="usersTable"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- REVIEWS (Manage customer feedback) -->
+    <section id="tab-reviews" class="admin-tab" style="display:none;">
+      <div class="admin-header">
+        <div><h2>Customer Reviews</h2><p>Feedback customers left about the vehicles and service they used.</p></div>
+      </div>
+      <div class="panel">
+        <div id="reviewsTable"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- REPORTS AND ANALYTICS -->
+    <section id="tab-reports" class="admin-tab" style="display:none;">
+      <div class="admin-header">
+        <div><h2>Reports &amp; Analytics</h2><p>Computed live from the SQL database.</p></div>
+      </div>
+      <div class="stat-row" id="reportStatRow">
+        <div class="stat-card"><span>Total bookings</span><b id="repTotalBookings">–</b></div>
+        <div class="stat-card"><span>Total revenue</span><b id="repTotalRevenue">–</b></div>
+        <div class="stat-card"><span>Completed rentals</span><b id="repCompleted">–</b></div>
+        <div class="stat-card"><span>Cancelled</span><b id="repCancelled">–</b></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Most rented vehicles</h3></div>
+        <div id="reportTopVehicles"><div class="spinner"></div></div>
+      </div>
+      <div class="panel">
+        <div class="panel-head"><h3>Customer activity</h3></div>
+        <div id="reportCustomerActivity"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+    <!-- AI INSIGHTS (UC-04) -->
+    <section id="tab-ai-insights" class="admin-tab" style="display:none;">
+      <div class="admin-header">
+        <div><h2>AI Insights</h2><p>Recommendation, pricing, demand and pattern intelligence computed from live booking data.</p></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>Sample recommendations (popularity-based preview)</h3></div>
+        <div id="aiRecsOut"><div class="spinner"></div></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>Booking patterns</h3></div>
+        <div id="aiPatternsOut"><div class="spinner"></div></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>Demand prediction</h3></div>
+        <div class="toolbar" style="margin-bottom:12px;display:flex;gap:10px;align-items:center;">
+          <select id="aiDemandCategory">
+            <option value="">All types</option>
+            <option value="Car">Car</option>
+            <option value="Van">Van</option>
+            <option value="SUV">SUV</option>
+            <option value="Motorbike">Motorbike</option>
+          </select>
+          <button class="btn btn-primary btn-sm" id="aiDemandBtn">Predict next month</button>
+        </div>
+        <div id="aiDemandOut"><p style="color:var(--text-mute);">Pick a type and click Predict.</p></div>
+      </div>
+
+      <div class="panel">
+        <div class="panel-head"><h3>Model / strategy comparison</h3></div>
+        <div id="aiComparisonOut"><div class="spinner"></div></div>
+      </div>
+    </section>
+
+  </main>
+</div>
+
+<!-- Vehicle Add/Edit Modal -->
+<div class="modal-backdrop" id="vehicleModal">
+  <div class="modal">
+    <h3 id="vehicleModalTitle">Add Vehicle</h3>
+    <form id="vehicleForm">
+      <input type="hidden" id="vId" />
+      <div class="grid-2">
+        <div class="field"><label for="vName">Name</label><input id="vName" required /></div>
+        <div class="field"><label for="vBrand">Brand</label><input id="vBrand" required /></div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="vType">Type</label>
+          <select id="vType" required>
+            <option value="Car">Car</option><option value="Van">Van</option>
+            <option value="SUV">SUV</option><option value="Motorbike">Motorbike</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="vFuel">Fuel type</label>
+          <select id="vFuel">
+            <option value="Petrol">Petrol</option><option value="Diesel">Diesel</option>
+            <option value="Electric">Electric</option><option value="Hybrid">Hybrid</option>
+          </select>
+        </div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="vTransmission">Transmission</label>
+          <select id="vTransmission"><option value="Automatic">Automatic</option><option value="Manual">Manual</option></select>
+        </div>
+        <div class="field"><label for="vPrice">Price per day (LKR)</label><input id="vPrice" type="number" min="0" step="1" required /></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label for="vReg">Registration number</label><input id="vReg" /></div>
+        <div class="field">
+          <label for="vStatus">Status</label>
+          <select id="vStatus">
+            <option value="AVAILABLE">Available</option><option value="RESERVED">Reserved</option>
+            <option value="RENTED">Rented</option><option value="MAINTENANCE">Maintenance</option>
+          </select>
+        </div>
+      </div>
+      <div class="field"><label for="vImage">Image URL</label><input id="vImage" placeholder="https://…" /></div>
+      <div class="field"><label for="vDesc">Description</label><input id="vDesc" /></div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-danger" id="vehicleCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary" id="vehicleSaveBtn">Save vehicle</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<!-- User Edit Modal -->
+<div class="modal-backdrop" id="userModal">
+  <div class="modal">
+    <h3>Edit User</h3>
+    <form id="userForm">
+      <input type="hidden" id="uId" />
+      <div class="grid-2">
+        <div class="field"><label for="uName">Full name</label><input id="uName" required /></div>
+        <div class="field"><label for="uEmail">Email</label><input id="uEmail" type="email" required /></div>
+      </div>
+      <div class="grid-2">
+        <div class="field"><label for="uNic">NIC</label><input id="uNic" /></div>
+        <div class="field"><label for="uPhone">Phone</label><input id="uPhone" /></div>
+      </div>
+      <div class="grid-2">
+        <div class="field">
+          <label for="uRole">Role</label>
+          <select id="uRole"><option value="CUSTOMER">Customer</option><option value="ADMIN">Admin</option></select>
+        </div>
+        <div class="field"><label for="uPassword">New password (optional)</label><input id="uPassword" type="password" placeholder="Leave blank to keep current" /></div>
+      </div>
+      <div class="modal-actions">
+        <button type="button" class="btn btn-danger" id="userCancelBtn">Cancel</button>
+        <button type="submit" class="btn btn-primary">Save user</button>
+      </div>
+    </form>
+  </div>
+</div>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/admin.js"></script>
+</body>
+</html>

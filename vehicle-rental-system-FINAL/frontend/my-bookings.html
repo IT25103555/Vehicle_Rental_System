@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>My Bookings — DriveLanka</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="my-bookings.html">
+
+<nav class="nav" id="nav-mount"></nav>
+
+<section class="section">
+  <div class="wrap">
+    <div class="section-head">
+      <span class="kicker">Your account</span>
+      <h2>My Bookings</h2>
+    </div>
+    <div id="bookingsMount"><div class="spinner"></div></div>
+  </div>
+</section>
+
+<!-- Review modal -->
+<div class="modal-backdrop" id="reviewModal">
+  <div class="modal">
+    <h3>Leave a review</h3>
+    <p id="reviewVehicleLabel" style="color:var(--text-mute);margin-top:-10px;margin-bottom:16px;"></p>
+    <input type="hidden" id="reviewBookingId">
+    <div class="field">
+      <label>Rating</label>
+      <select id="reviewRating">
+        <option value="5">★★★★★ Excellent</option>
+        <option value="4">★★★★ Good</option>
+        <option value="3">★★★ Okay</option>
+        <option value="2">★★ Poor</option>
+        <option value="1">★ Very poor</option>
+      </select>
+    </div>
+    <div class="field">
+      <label>Comment</label>
+      <textarea id="reviewComment" rows="4" placeholder="How was the vehicle and the service?" style="width:100%;padding:10px;border-radius:8px;border:1px solid var(--line-light);"></textarea>
+    </div>
+    <div class="modal-actions">
+      <button class="btn btn-danger" id="reviewCancelBtn">Cancel</button>
+      <button class="btn btn-primary" id="reviewSubmitBtn">Submit Review</button>
+    </div>
+  </div>
+</div>
+
+<footer class="footer" id="footer-mount"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/my-bookings.js"></script>
+</body>
+</html>

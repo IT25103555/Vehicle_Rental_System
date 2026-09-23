@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Browse Fleet — DriveLanka</title>
+<link rel="stylesheet" href="css/style.css" />
+</head>
+<body data-page="vehicles.html">
+
+<nav class="nav" id="nav-mount"></nav>
+
+<header class="hero" style="padding-bottom: 0;">
+  <div class="wrap" style="position:relative;padding:56px 0 40px;">
+    <div class="hero-eyebrow">Full fleet</div>
+    <h1 style="font-size:clamp(1.9rem,3.4vw,2.6rem);max-width:none;">Browse every vehicle in real time</h1>
+    <p class="lead">Availability updates the moment someone else books — what you see is what's actually free.</p>
+  </div>
+</header>
+
+<section class="section">
+  <div class="wrap">
+    <form class="filter-bar" id="filterForm">
+      <div class="field">
+        <label for="fSearch">Search</label>
+        <input type="text" id="fSearch" placeholder="Name or brand…" />
+      </div>
+      <div class="field">
+        <label for="fType">Type</label>
+        <select id="fType">
+          <option value="">All types</option>
+          <option value="Car">Car</option>
+          <option value="Van">Van</option>
+          <option value="SUV">SUV</option>
+          <option value="Motorbike">Motorbike</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fStatus">Availability</label>
+        <select id="fStatus">
+          <option value="">Any status</option>
+          <option value="AVAILABLE">Available</option>
+          <option value="RESERVED">Reserved</option>
+          <option value="RENTED">Rented</option>
+          <option value="MAINTENANCE">Maintenance</option>
+        </select>
+      </div>
+      <div class="field">
+        <label for="fSort">Sort by</label>
+        <select id="fSort">
+          <option value="">Default</option>
+          <option value="price_asc">Price: Low to High</option>
+          <option value="price_desc">Price: High to Low</option>
+        </select>
+      </div>
+      <button type="submit" class="btn btn-dark">Apply filters</button>
+    </form>
+
+    <div id="resultsMeta" style="margin-bottom:16px;color:var(--text-mute);font-size:.9rem;"></div>
+    <div class="grid" id="vehicleGrid">
+      <div class="spinner"></div>
+    </div>
+  </div>
+</section>
+
+<footer class="footer" id="footer-mount"></footer>
+
+<script src="js/api.js"></script>
+<script src="js/layout.js"></script>
+<script src="js/vehicles.js"></script>
+</body>
+</html>
