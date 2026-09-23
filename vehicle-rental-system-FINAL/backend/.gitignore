@@ -3,4 +3,5 @@ data/
 *.class
 .idea/
 *.iml
+application.properties
 .DS_Store
